@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.firstSection {
+  /* background-image: url(image.png); */
+  /* height: 100vh; */
+  background-size: auto;
+  background-size: cover; 
+}
+.log{
+  display: contents;
+}
+.navBar {
+  display: flex;
+  color: white;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 70px;
+  background: linear-gradient(101.62deg, #2962FF 1.39%, #001D6F 78.03%);
+}
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+.line {
+  display: flex;
+}
+li {
+  margin-left: 25px;
+}
+.button-43 {
+  /* background-image: linear-gradient(-180deg, #2962FF 0%, #1E96C8 100%); */
+  background-color: #fff;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  /* color: #FFFFFF; */
+  color: 2962FF;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  text-decoration: none;
+  width: 150px;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-43:hover {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #2962FF 100%);
+  color: white;
+  font-weight: 600;
+}
+.head1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  /* line-height: 90px; */
+  color: #FFFFFF;
+}
+.head2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  /* line-height: 90px; */
+  color: #2962FF;
+  border-radius: 10px;
+  width: 300px;
+  background: white;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.head3 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 56px;
+  /* line-height: 84px; */
+  color: #FFFFFF;
+}
+.section {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+}
+
+.firstImage {
+  width: 40%;
+}
+.firstRight{
+  display: contents;
+}
+.text {
+  color: white;
+}
+.firstLeft{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#btn2{
+  margin-top: 15px;
+}
+.img3{
+  width: 35vw;
+  margin: 50px;
+  border-radius: 10px;
+  margin-left: 100px;
+}
+.head5{
+  color: black;
+  font-size: 45px;
+  font-weight: 500;
+}
+.text2{
+  color: black;
+}
+.head6{
+  font-size: 20px;
+}
+.second{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right2{
+  margin: 50px;
+  margin-right: 100px;
+}
+.f1{
+  display: flex;
+  margin-top: 10px;
+  align-items: center 
+}
+.info2{
+  /* margin: 10px; */
+  padding: 10px;
+}
+.icon{
+  margin: 10px;
+}
+.third{
+  /* background-image: url(background.png); */
+  background-size: cover;
+/* }
+#first{
+  /* background: url(background3.png); */
+} */
+.foot{
+  display: flex;
+  /* background: url(background5.png); */
+  background-size: cover;
+  color: white;
+  height: 120px;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around
+}
+.btn8{
+  background: #2962FF;
+  color: white;
+  margin-top: 20px;
+}
+
+
+
+@media (max-width: 768px) {
+  .button-43 {
+      padding: 1rem 2rem;
+  }
+  .menus{
+      display: none;
+  }
+  .section{
+      flex-direction: column-reverse;
+      margin: 10px;
+      padding: 0;
+  }
+  .line{
+      flex-direction: column;
+  }
+  .head2,.head1,.head3{
+      margin: 0;
+      font-size: 40px;
+      line-height: 60px;
+
+  }
+  .head2{
+      width: 70%;
+  }
+  .firstImage{
+      width: 80%;
+      align-self: center;
+  }
+  .logo2{
+      width: 60%;
+      margin-left: 10px;
+  }
+  .button-43{
+      padding: 10px;
+      width: 110px;
+      margin: 10px;
+  }
+  .btn6{
+      margin-right: 10px;
+  }
+  .second{
+      flex-direction: column;
+  }
+  .head5{
+      color: black;
+      font-size: 25px;
+      line-height: 30px;
+      font-weight: 500;
+  }
+  .head6{
+      font-size: 20px;
+  }
+  .img3{
+      width: 75vw;
+      margin: 20px;
+  }
+  .second{
+      margin-top: 30px;
+  }
+  .right2{
+      margin: 20px;
+  }
+  .icon{
+      /* height: 10px; */
+      width: 40px;
+      height: 40px;
+  }
+  .foot{
+      flex-direction: column;
+  }
+  #nav2{
+      display: flex;
+  }
+  #nav3{
+      display: flex;
+      flex-direction: column;
+  }
+  .foot{
+      height: 300px;
+  }
+  
+}

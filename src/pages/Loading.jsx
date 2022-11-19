@@ -8,7 +8,7 @@ function Loading() {
 
   let navigate = useNavigate();
   setTimeout(() => {
-      navigate("/home")
+      navigate("/prof")
   }, 10000);
 
   return (

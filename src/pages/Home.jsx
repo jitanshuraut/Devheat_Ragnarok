@@ -120,8 +120,8 @@ function Home() {
               </ul>
             </div>
             <div className="social">
-              <i className="fa fa-linkedin-square" style={{fontSize: '36px'}} />
-              <i className="fa fa-github" style={{fontSize: '36px'}} />
+              <i className="fa fa-linkedin-square" style={{fontSize: '36px',marginLeft:"10px"}} />
+              <i className="fa fa-github" style={{fontSize: '36px',marginLeft:"10px"}} />
             </div>
           </div>
         </footer>

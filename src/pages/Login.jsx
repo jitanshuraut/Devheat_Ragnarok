@@ -1,24 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase"
 import { useNavigate } from "react-router-dom";
+import { collection, query, where, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
+import {db} from "../firebase"
 
 
 function Login() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [username, setusername] = useState("")
+  const [password, setpassword] = useState("")
+const [er, seter] = useState("")
+  const onchange_2 = (event) => {
+    setusername(event.target.value);
+  }
+
+  const onchange_1 = (event) => {
+    setpassword(event.target.value);
+  }
+
   const provider = new GoogleAuthProvider();
-  console.log("yes")
+ 
   const signInWithGoogle = () => {
 
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        // setUser({
-        //     name: result.user.displayName,
-        //     email: result.user.email,
-        //     url: result.user.photoURL
-        // })
+       
 
         sessionStorage.setItem("name", result.user.displayName)
         sessionStorage.setItem("email", result.user.email)
@@ -33,25 +41,71 @@ function Login() {
   };
 
 
+ 
+  const [file, setfile] = useState([])
+  
+
+const submit=()=>{
+
+  if(username=="" && password==""){
+    seter("please enter a vaild input") 
+  }
+  else{
+
+  const q = query(collection(db, "user"), where("email", "==", `${username}`));
+  const getuser=async()=>{
+    const data=await getDocs(q);
+    setfile(data.docs.map((doc)=>
+      ({...doc.data(),id:doc.id})
+    ))
+  }
+  getuser()
+
+  console.log(file)
+  console.log(password)
+  console.log(username)
+
+
+
+
+  if(file[0].password=="1234"){
+    seter("")
+    sessionStorage.setItem("name", file[0].name)
+    sessionStorage.setItem("email", file[0].email)
+    sessionStorage.setItem("url", file[0].contact)
+    navigate("/home__")
+  }
+  else{
+    seter("please enter a vaild input")
+  }
+}
+}
+
+
+   
+
+
   return (
     <>
 
-{/* <h1  onClick={()=>{signInWithGoogle()}}>click me</h1> */}
-  
+      {/* <h1  onClick={()=>{signInWithGoogle()}}>click me</h1> */}
+
       <div className="container">
         <div className="forms-container">
           <div className="signin-signup">
             <form className="sign-in-form">
-              <h2 className="title" onClick={()=>{signInWithGoogle()}}>Sign in</h2>
+              <h2 className="title" onClick={() => { signInWithGoogle() }}>Sign in</h2>
               <div className="input-field">
                 <i className="fas fa-user"></i>
-                <input type="text" placeholder="Username" />
+                <input type="text" placeholder="email" onChange={onchange_2} value={username} />
               </div>
               <div className="input-field">
                 <i className="fas fa-lock"></i>
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" onChange={onchange_1} value={password} />
               </div>
-              <input type="submit" value="Login" className="btn solid" />
+              <h1 style={{color:"red"}}>{er}</h1>
+
+              <div className='login_btn' onClick={()=>{submit()}}><h1 className='btn_lg'>Login</h1></div>
               <p className="social-text">Or Sign in with social platforms</p>
               <div className="social-media">
                 <a href="#" className="social-icon">
@@ -60,7 +114,7 @@ function Login() {
                 <a href="#" className="social-icon">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="" className="social-icon"onClick={()=>{signInWithGoogle()}}>
+                <a href="" className="social-icon" onClick={() => { signInWithGoogle() }}>
                   <i className="fab fa-google"></i>
                 </a>
                 <a href="#" className="social-icon">
@@ -69,7 +123,7 @@ function Login() {
               </div>
             </form>
             <form className="sign-up-form">
-              <h2 className="title" onClick={()=>{signInWithGoogle()}}>Sign up</h2>
+              <h2 className="title" onClick={() => { signInWithGoogle() }}>Sign up</h2>
               <div className="input-field">
                 <i className="fas fa-user"></i>
                 <input type="text" placeholder="Username" />
@@ -91,7 +145,7 @@ function Login() {
                 <a href="#" className="social-icon">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="" className="social-icon" onClick={()=>{signInWithGoogle()}}>
+                <a href="" className="social-icon" onClick={() => { signInWithGoogle() }}>
                   <i className="fab fa-google" ></i>
                 </a>
                 <a href="#" className="social-icon">
@@ -109,7 +163,7 @@ function Login() {
               <p>
                 Enter your details and start your journey with us
               </p>
-              <button className="btn transparent" id="sign-up-btn"onClick={()=>{signInWithGoogle()}}>
+              <button className="btn transparent" id="sign-up-btn" onClick={() => { signInWithGoogle() }}>
                 Sign up
               </button>
             </div>

@@ -1,0 +1,172 @@
+.upper_box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aquamarine;
+    margin: 20px;
+}
+.button{
+    padding: 10px 20px 10px 20px;
+    background-color: rgb(180, 40, 40);
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    
+}
+.error{
+    font-size: 15px;
+    color: red;
+}
+.modal {
+    font-size: 20px;
+    background-color: #2962FF;
+  }
+  .header{
+    color: white;
+    font-size: 30px;
+}
+  .modal > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .modal > .content {
+    width: 100%;
+    padding: 50px 30px;
+  }
+  .modal > .actions {
+    width: 100%;
+    padding: 20px 10px;
+    margin: auto;
+    text-align: center;
+  }
+  .buy_number{
+    padding: 10px;
+  }
+  .total_text{
+    font-size: 17px;
+  }
+  .ok_btn{
+    background-color: green;
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .num{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  .buy_stock{
+    font-size: 20px;
+  }
+  .modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+  }
+.content{
+    background-color: #ffffff;
+    color: black;
+    padding: 20px;
+  
+}
+.left_side{
+display: flex;
+justify-content: start;
+width: 50%;
+align-items: center;
+}
+.img{
+    width: 70px;
+    object-fit: contain;
+}
+.right_side{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    width: 50%;
+
+}
+.change_data{
+    margin-left: 20px;
+}
+.symbol{
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+.buy{
+    background-color: aqua;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.buy_text{
+    font-weight: 400;
+}
+.btn_buy{
+    background-color: bisque;
+    border-radius: 10px;
+    padding: 10px 30px 10px 30px;
+
+}
+.overview_head{
+ margin: 10px;
+ padding: 10px;
+text-align: center;
+}
+.info_box{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+}
+.left_box{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+}
+.right_side{
+    display: flex;
+    flex-direction: column;
+}
+.l_box_data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(78, 78, 86);
+    
+    padding: 10px;
+}
+._img_data{
+    display: flex;
+align-items: center;
+}
+.name_p{
+    margin-left: 10px;
+
+}
+.p_data{
+    margin-right: 10px;
+}

@@ -9,6 +9,7 @@ import Coin_detail from './pages/Coin_detail';
 import Profile from './pages/Profile';
 import Detail from './pages/Detail';
 import Wallet from './pages/Wallet';
+import Su_pay from './pages/Su_pay';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
     <Route path="/prof" element={ <Profile/> } />
     <Route path="/extra" element={ <Detail/> } />
     <Route path="/wallet" element={ <Wallet/> } />
+    <Route path="/su_pay" element={ <Su_pay/> } />
 
 
 

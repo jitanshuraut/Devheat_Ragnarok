@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { db } from "../firebase"
 import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
 
@@ -12,9 +12,9 @@ function Profile() {
 
     const ref = collection(db, "user");
     const save = async () => {
-   
+
         sessionStorage.setItem("balance", 100)
-        sessionStorage.setItem("fi_id", sessionStorage.getItem("email")+number)
+        sessionStorage.setItem("fi_id", sessionStorage.getItem("email") + number)
         sessionStorage.setItem("contact", number)
         await addDoc(ref, { username: `${sessionStorage.getItem("name")}`, password: "1234", fi_id: `${sessionStorage.getItem("name")}${number}`, contact: number, balance: "100", email: `${sessionStorage.getItem("email")}` })
         navigate("/home__")
@@ -42,10 +42,10 @@ function Profile() {
                     </div>
                     <div className="menus">
                         <ul>
-                            <li>Stocks</li>
+                            <Link to="/home_" style={{ color: "white", textDecoration: "none" }}><li>Stocks</li></Link>
                             <li>Predictor</li>
-                            <li>Profile</li>
-                            <li>Wallet</li>
+                            <Link to="/extra" style={{ color: "white", textDecoration: "none" }}> <li>Profile</li></Link>
+                            <Link to="/wallet" style={{ color: "white", textDecoration: "none" }}> <li>Wallet</li></Link>
                         </ul>
                     </div>
                     <div className="Sign up"><i className="fa fa-user-circle" style={{ fontSize: "36px" }}></i>
@@ -65,10 +65,7 @@ function Profile() {
                             <p className="fhead">First Name</p>
                             <div className="fname">{sessionStorage.getItem("name")}</div>
                         </div>
-                        <div className="as">
-                            <p className="fhead">Last Name</p>
-                            <div className="fname">Gondha</div>
-                        </div>
+
                     </div>
                     <div className="as1">
                         <div className="as">
@@ -116,10 +113,10 @@ function Profile() {
                     <img src="Logo.svg" alt="" style={{ width: "200px" }} />
                     <div className="menus" id="nav2">
                         <ul id="nav3">
-                            <li>Stocks</li>
+                            <Link to="/home_" style={{ color: "white", textDecoration: "none" }}><li>Stocks</li></Link>
                             <li>Predictor</li>
-                            <li>Profile</li>
-                            <li>About us</li>
+                            <Link to="/extra" style={{ color: "white", textDecoration: "none" }}> <li>Profile</li></Link>
+                            <Link to="/wallet" style={{ color: "white", textDecoration: "none" }}> <li>Wallet</li></Link>
                         </ul>
                     </div>
                     <div className="social">

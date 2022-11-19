@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
 import { db } from "../firebase"
+import { Link } from 'react-router-dom';
+
+
 function Detail() {
 
-      const navigate = useNavigate();
+    const navigate = useNavigate();
     // const q = query(collection(db, "user"), where("email", "==", `${sessionStorage.getItem("email")}`));
     // const [file, setfile] = useState([])
     // const navigate = useNavigate();
@@ -22,7 +25,7 @@ function Detail() {
     return (
         <>
 
-        
+
             <div className="firstSection">
                 <div className="navBar">
                     <div className="logo">
@@ -30,10 +33,10 @@ function Detail() {
                     </div>
                     <div className="menus">
                         <ul>
-                            <li>Stocks</li>
+                            <Link to="/home_" style={{ color: "white", textDecoration: "none" }}> <li>Stocks</li></Link>
                             <li>Predictor</li>
-                            <li>Profile</li>
-                            <li>Wallet</li>
+                            <Link to="/extra" style={{ color: "white", textDecoration: "none" }}><li>Profile</li></Link>
+                            <Link to="/wallet" style={{ color: "white", textDecoration: "none" }}><li>Wallet</li></Link>
                         </ul>
                     </div>
                     <div className="Sign up"><i class="fa fa-user-circle" style={{ fontSize: "36px" }}></i>
@@ -50,13 +53,13 @@ function Detail() {
                 <div className="right11">
                     <div className="as1">
                         <div className="as">
-                            <p className="fhead">First Name</p>
+                            <p className="fhead"> Name</p>
                             <div className="fname">{sessionStorage.getItem("name")}</div>
                         </div>
-                        <div className="as">
+                        {/* <div className="as">
                             <p className="fhead">Last Name</p>
                             <div className="fname"></div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="as1">
                         <div className="as">
@@ -83,7 +86,7 @@ function Detail() {
             </div>
 
 
-            <div className="btn55"><button className="button-43 btn8 btn9" role="button">Go to Wallet</button></div>
+            <div className="btn55" onClick={() => { navigate("/wallet") }}><button className="button-43 btn8 btn9" role="button">Go to Wallet</button></div>
 
 
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase"
-import { useNavigate } from "react-router-dom";
+
 import { collection, query, where, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
 import { db } from "../firebase"
+import { useNavigate, Link } from "react-router-dom";
 
 
 function Login() {
@@ -32,6 +33,7 @@ function Login() {
         sessionStorage.setItem("name", result.user.displayName)
         sessionStorage.setItem("email", result.user.email)
         sessionStorage.setItem("id", result.user.id)
+
 
         navigate("/loading");
       })
@@ -77,10 +79,10 @@ function Login() {
         sessionStorage.setItem("balance", file[0].balance)
         sessionStorage.setItem("fi_id", file[0].fi_id)
         sessionStorage.setItem("contact", file[0].contact)
-        
+
         navigate("/home__")
       }
-      
+
       else {
         seter("please enter a vaild input")
       }

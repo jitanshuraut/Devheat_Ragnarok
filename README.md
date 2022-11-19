@@ -29,7 +29,7 @@ https://
 
 ## 🔷Feature of this Website
 ```
-1. User can analysis diffrent stocks and crypto coins andtheir prices with help of Graphs. 
+1. User can analyse diffrent stocks and crypto coins and their prices with help of Graphs. 
    So They can select best ones for Profit.
 
 2. User can do virtual trading with real crypto coins. 
@@ -50,10 +50,26 @@ https://
 
 2. React
 
-3.Python
+3. Python
 
-3. Firebase
+4. Firebase
+
+5. Dash
 ```
+## 🔷How is it possible to Predict?
+```
+1. Using LSTM Model for ML Model Creation
 
+2. LSTM works by taking into consideration the workings of the neural cells in our brain.
+    Just like those LSTM Model works by integrating a set of internal cells to perform the desired operation
+3. By taking a set of actual values into consideration while predicting the next data upon them,
+    and excluding the previous record helps in making the model both fast and efficient.
+
+```
 ### 🏆Future Scope
-
+1. Upon considering various other features of the trained set,
+   Like production efficiency, investments by the firm and many more
+   we can get better predicted stock prices.
+2. The above method not only increases the model accuracy and precision (AUC - ROC)
+   but also helps in getting the predicatable data for longer set of future intervals
+3. Adding a chatbot for user's queries.

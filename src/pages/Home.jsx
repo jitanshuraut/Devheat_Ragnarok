@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -17,7 +17,7 @@ function Home() {
                 <li>About us</li>
               </ul>
             </div>
-            <div className="Sign up"><button className="button-43 btn6" role="button">Sign In</button></div>
+            <div className="Sign up"><Link to="/login" className="button-43 btn6">Sign In</Link></div>
           </div>
           <div className="section">
             <div className="firstLeft">
@@ -28,7 +28,7 @@ function Home() {
               <div className="head3">of the Future!</div>
               <div className="text">Always an informed investment decision. <br />
                 First you prepare, then you go for it.</div>
-              <div className="btn" id="btn2"><button className="button-43" role="button">Sign In</button></div>
+              <div className="btn" id="btn2"><Link to="/login"className="button-43">Sign In</Link></div>
             </div>
             <div className="firstRight">
               <img className="firstImage" src="mobiletrade.png" alt="image" />
@@ -105,7 +105,7 @@ function Home() {
             <div className="head1 head5">What is us?</div>
             <div className="text text2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium expedita, eaque atque libero enim reiciendis repellendus at quas laudantium voluptatem deleniti sit molestias adipisci tenetur consequuntur minima nulla ullam iste!</div>
-            <div className="Sign up"><button className="button-43 btn6 btn8" role="button">Sign In</button></div>
+            <div className="Sign up"><Link to="/login"className="button-43 btn6 btn8" >Sign In</Link></div>
           </div>
         </div>
         <footer>

@@ -34,7 +34,7 @@ function Coin_detail() {
 
 
     const navigate = useNavigate();
-    const [data_, setdata_] = useState("")
+    const [data_, setdata_] = useState([])
     const [er, seter] = useState("")
     const [stock, setstock] = useState("")
     const [bal, setbal] = useState(sessionStorage.getItem("balance"))
@@ -1203,6 +1203,9 @@ function Coin_detail() {
         ]
     }
 
+
+
+
     const clicked = async (id) => {
         const new_ = { balance: bal }
         const doc_ = doc(db, "user", id)
@@ -1222,11 +1225,12 @@ function Coin_detail() {
 
     }
 
+    let a
 
 
 
     let time = []
-    let pri = []
+            let pri = []
 
 
     useEffect(() => {
@@ -1238,27 +1242,40 @@ function Coin_detail() {
                     'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
                 }
             };
-            const response = await fetch(`https://coinranking1.p.rapidapi.com/coin/${location.state.uuid}/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h`, options)
+            const response = await fetch(`https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h`, options)
             const movies = await response.json();
             return movies;
         }
         fetchMoviesJSON().then(movies => {
 
-
+            setdata_(movies)
             console.log("+++++++")
 
             console.log(movies) // fetched movies
-            setdata_(movies)
-
+            
+           
         });
 
 
-    }, [])
+    }, [1])
+
+    var user = (localStorage.getItem('data'))
+console.log(user)
 
 
 
-
-
+    a=ext.history
+    console.log(a)
+  
+    for (const key in a) {
+     
+            pri.push(ext.history[key].price)
+            var date = new Date(ext.history[key].timestamp * 1000);
+    
+            time.push(date.toLocaleTimeString("default"))
+    
+        
+    }
 
 
 
@@ -1283,16 +1300,8 @@ function Coin_detail() {
     };
 
 
-    console.log(data_.history)
 
-
-    for (let index = 0; index < ext.history.lenght; index++) {
-        pri.push(ext.history[index].price)
-        var date = new Date(ext.history[index].timestamp * 1000);
-
-        time.push(date.toLocaleTimeString("default"))
-
-    }
+   
 
     return (
         <>
@@ -1328,7 +1337,7 @@ function Coin_detail() {
                 </div>
 
                 <div className={styles.right_side}>
-                    <h2 className={styles.change_data} style={{ color: `${location.state.change ? "green" : "red"}` }}>{location.state.change}</h2>
+                    <h2 className={styles.change_data} style={{ color: `${location.state.change>0?"green":"red"}` }}>{location.state.change}</h2>
                     <h2 className={styles.price_data}>{location.state.price}  USDT</h2>
                 </div>
             </div>

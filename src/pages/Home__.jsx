@@ -309,7 +309,30 @@ function Home__() {
         }
     ]
 
+const nav_data=()=>{
+    async function fetchMoviesJSON() {
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '9be73ef885mshba4ffce1e2b9442p1a2d69jsndd40b3e2500c',
+                'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+            }
+        };
+        const response = await fetch(`https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h`, options)
+        const movies = await response.json();
+        return movies;
+    }
+    fetchMoviesJSON().then(movies => {
 
+       
+        console.log("+++++++")
+
+       
+        
+       
+    });
+
+}
 
 
     return (
@@ -376,6 +399,25 @@ function Home__() {
                     coin__ ? coin__.data.coins.map((ele) => {
                         let p = Number(ele.price).toFixed(3)
                         return (<div className="data_box" onClick={() => {
+
+
+                            async function fetchMoviesJSON() {
+                                const options = {
+                                    method: 'GET',
+                                    headers: {
+                                        'X-RapidAPI-Key': '9be73ef885mshba4ffce1e2b9442p1a2d69jsndd40b3e2500c',
+                                        'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+                                    }
+                                };
+                                const response = await fetch(`https://coinranking1.p.rapidapi.com/coin/${ele.uuid}/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h`, options)
+                                const movies = await response.json();
+                                return movies;
+                            }
+                            fetchMoviesJSON().then(movies => {
+                        localStorage.setItem("data",(movies.histroy))
+                                console.log("+++++++")
+                            });
+
                             navigate('/coin_detail', { state: { id: ele.id, url: ele.iconUrl, uuid: ele.uuid, name: ele.name, symbol: ele.symbol, price: ele.price, change: ele.change } });
                         }}>
                             <div className="left_side">
@@ -384,7 +426,7 @@ function Home__() {
                                 <h2 className="long_name">{ele.name}</h2>
                             </div>
                             <div className="right_side">
-                                <h2 className="change">{ele.change}</h2>
+                                <h2 className="change" style={{color:`${ele.change>0?"green":"red"}`}}>{ele.change}</h2>
                                 <h2 className="price">{p} USDT</h2>
                             </div>
                         </div>)

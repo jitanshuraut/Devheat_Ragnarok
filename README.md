@@ -61,8 +61,11 @@ https://
 1. Using LSTM Model for ML Model Creation
 
 2. LSTM works by taking into consideration the workings of the neural cells in our brain.
+    
     Just like those LSTM Model works by integrating a set of internal cells to perform the desired operation
+
 3. By taking a set of actual values into consideration while predicting the next data upon them,
+    
     and excluding the previous record helps in making the model both fast and efficient.
 
 ```

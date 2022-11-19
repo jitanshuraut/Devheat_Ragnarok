@@ -1,16 +1,18 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase"
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
-import {db} from "../firebase"
+import { db } from "../firebase"
 
 
 function Login() {
   const navigate = useNavigate();
   const [username, setusername] = useState("")
   const [password, setpassword] = useState("")
-const [er, seter] = useState("")
+  const [er, seter] = useState("")
+
+
   const onchange_2 = (event) => {
     setusername(event.target.value);
   }
@@ -20,17 +22,16 @@ const [er, seter] = useState("")
   }
 
   const provider = new GoogleAuthProvider();
- 
   const signInWithGoogle = () => {
 
 
     signInWithPopup(auth, provider)
       .then((result) => {
-       
+
 
         sessionStorage.setItem("name", result.user.displayName)
         sessionStorage.setItem("email", result.user.email)
-        sessionStorage.setItem("url", result.user.photoURL)
+        sessionStorage.setItem("id", result.user.id)
 
         navigate("/loading");
       })
@@ -41,48 +42,53 @@ const [er, seter] = useState("")
   };
 
 
- 
+
   const [file, setfile] = useState([])
-  
 
-const submit=()=>{
 
-  if(username=="" && password==""){
-    seter("please enter a vaild input") 
+  const submit = () => {
+
+    if (username == "" && password == "") {
+      seter("please enter a vaild input")
+    }
+    else {
+
+      const q = query(collection(db, "user"), where("email", "==", `${username}`));
+      const getuser = async () => {
+        const data = await getDocs(q);
+        setfile(data.docs.map((doc) =>
+          ({ ...doc.data(), id: doc.id })
+        ))
+      }
+      getuser()
+
+      console.log(file)
+      console.log(password)
+      console.log(username)
+
+
+
+
+      if (file[0].password == "1234") {
+        seter("")
+        sessionStorage.setItem("name", file[0].username)
+        sessionStorage.setItem("email", file[0].email)
+        sessionStorage.setItem("id", file[0].id)
+        sessionStorage.setItem("balance", file[0].balance)
+        sessionStorage.setItem("fi_id", file[0].fi_id)
+        sessionStorage.setItem("contact", file[0].contact)
+        
+        navigate("/home__")
+      }
+      
+      else {
+        seter("please enter a vaild input")
+      }
+    }
   }
-  else{
-
-  const q = query(collection(db, "user"), where("email", "==", `${username}`));
-  const getuser=async()=>{
-    const data=await getDocs(q);
-    setfile(data.docs.map((doc)=>
-      ({...doc.data(),id:doc.id})
-    ))
-  }
-  getuser()
-
-  console.log(file)
-  console.log(password)
-  console.log(username)
 
 
 
-
-  if(file[0].password=="1234"){
-    seter("")
-    sessionStorage.setItem("name", file[0].name)
-    sessionStorage.setItem("email", file[0].email)
-    sessionStorage.setItem("url", file[0].contact)
-    navigate("/home__")
-  }
-  else{
-    seter("please enter a vaild input")
-  }
-}
-}
-
-
-   
 
 
   return (
@@ -103,9 +109,9 @@ const submit=()=>{
                 <i className="fas fa-lock"></i>
                 <input type="password" placeholder="Password" onChange={onchange_1} value={password} />
               </div>
-              <h1 style={{color:"red"}}>{er}</h1>
+              <h1 style={{ color: "red" }}>{er}</h1>
 
-              <div className='login_btn' onClick={()=>{submit()}}><h1 className='btn_lg'>Login</h1></div>
+              <div className='login_btn' onClick={() => { submit() }}><h1 className='btn_lg'>Login</h1></div>
               <p className="social-text">Or Sign in with social platforms</p>
               <div className="social-media">
                 <a href="#" className="social-icon">

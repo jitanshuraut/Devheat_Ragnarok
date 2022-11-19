@@ -14,6 +14,8 @@ import {
     Tooltip,
     Legend,
   } from 'chart.js';
+  import { collection, query, where, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
+import {db} from "../firebase"
   import { Line } from 'react-chartjs-2';
   ChartJS.register(
     CategoryScale,
@@ -30,15 +32,32 @@ import {
   
 function Coin_detail() {
     const navigate = useNavigate();
+    
     const [data_, setdata_] = useState([])
     const [er, seter] = useState("")
     const [stock, setstock] = useState("")
+
+    const [bal, setbal] = useState(sessionStorage.getItem("balance"))
     const onchange_2=(event)=>{
         setstock(event.target.value);
-
        
     }
-      useEffect(() => {
+    const ref=collection(db,"transaction");
+    const save= async()=>{
+  
+      await addDoc(ref,{status:"buy",fi_id:`${sessionStorage.getItem("fi_id")}`,number_stock:stock, stock:`${location.state.symbol}`,totalprice:`${stock*location.state.price}`})
+      
+    }
+
+    
+    const [file, setfile] = useState([])
+  
+
+  
+
+    useEffect(() => {
+       
+ 
         const options = {
             method: 'GET',
             headers: {
@@ -82,10 +101,14 @@ function Coin_detail() {
         ]
     }
     console.log(data_.history)
+
+  
     return (
         <>
 
 {sessionStorage.getItem("name")?console.log("yes"):navigate("/login")}
+
+<h1>{bal}</h1>
           <div className={styles.upper_box}>
 
                 <div className={styles.left_side}>
@@ -130,12 +153,15 @@ function Coin_detail() {
 
        <div className={styles.ok_btn}  onClick={() => {
               console.log('modal closed ');
-              if(stock*location.state.price>100){
+              if(stock*location.state.price>bal){
                 console.log("error")
                 seter("please enter tha vaild in put")
               }
               else{
                 seter("")
+                // bal=bal-stock*location.state.price;
+                setbal(bal-stock*location.state.price)
+                save()
               close();
               }
             }}>
@@ -166,69 +192,76 @@ function Coin_detail() {
 
 
 
-            <div className={styles.info_box}>
-                <div className={styles.left_box}>
-                    <h1 className={styles.head_right}>Value statistics</h1>
+            <div className={styles.newsec}>
+        <div className={styles.newleft}>
+            <div className={styles.head29}>Value statistics</div>
+            <div className={styles.info22}>
+                <div className={styles.text12}> <i className="fa fa-user-circle" id="icon22" ></i>Price to USD</div>
+                <div className={styles.ans}><b>₹ 16,648.72</b></div>
+            </div>
+            <hr />
+            <div className={styles.info22}>
+                <div className={styles.text12}> <i className="fa fa-user-circle" id="icon22" ></i>Price to USD</div>
+                <div className={styles.ans}><b>₹ 16,648.72</b></div>
+            </div>
+            <hr />
+            <div className={styles.info22}>
+                <div className={styles.text12}> <i className="fa fa-user-circle" id="icon22" ></i>Price to USD</div>
+                <div className={styles.ans}><b>₹ 16,648.72</b></div>
+            </div>
+            <div className={styles.info22}>
+                <div className={styles.text12}> <i className="fa fa-user-circle" id="icon22" ></i>Price to USD</div>
+                <div className={styles.ans}><b>₹ 16,648.72</b></div>
+            </div>
+            <div className={styles.info22}>
+                <div className={styles.text12}> <i className="fa fa-user-circle" id="icon22" ></i>Price to USD</div>
+                <div className={styles.ans}><b>₹ 16,648.72</b></div>
+            </div>
+            <div className={styles.info22}>
+                <div className={styles.text12}> <i className="fa fa-user-circle" id="icon22" ></i>Price to USD</div>
+                <div className={styles.ans}><b>₹ 16,648.72</b></div>
+            </div>
+            <div className={styles.info22}>
+                <div className={styles.text12}> <i className="fa fa-user-circle" id="icon22" ></i>Price to USD</div>
+                <div className={styles.ans}><b>₹ 16,648.72</b></div>
+            </div>
+        </div>
 
 
-                    <div className={styles.l_box_data}>
-                        <div className={styles._img_data}>
-                            <HiSparkles style={{ fontSize: "20px", color: "blue" }} />
-                            <h3 className={styles.name_p}>price</h3>
-                        </div>
-                        <div className={styles.right_p}>
-                            <h3 className={styles.p_data}>1600</h3>
-                        </div>
-                    </div>
-                    <hr />
-                    <div className={styles.l_box_data}>
-                        <div className={styles._img_data}>
-                            <HiSparkles style={{ fontSize: "20px", color: "blue" }} />
-                            <h3 className={styles.name_p}>price</h3>
-                        </div>
-                        <div className={styles.right_p}>
-                            <h3 className={styles.p_data}>1600</h3>
-                        </div>
-                    </div> <div className={styles.l_box_data}>
-                        <div className={styles._img_data}>
-                            <HiSparkles style={{ fontSize: "20px", color: "blue" }} />
-                            <h3 className={styles.name_p}>price</h3>
-                        </div>
-                        <div className={styles.right_p}>
-                            <h3 className={styles.p_data}>1600</h3>
-                        </div>
-                    </div>
-                    <div className={styles.l_box_data}>
-                        <div className={styles._img_data}>
-                            <HiSparkles style={{ fontSize: "20px", color: "blue" }} />
-                            <h3 className={styles.name_p}>price</h3>
-                        </div>
-                        <div className={styles.right_p}>
-                            <h3 className={styles.p_data}>1600</h3>
-                        </div>
-                    </div> <div className={styles.l_box_data}>
-                        <div className={styles._img_data}>
-                            <HiSparkles style={{ fontSize: "20px", color: "blue" }} />
-                            <h3 className={styles.name_p}>price</h3>
-                        </div>
-                        <div className={styles.right_p}>
-                            <h3 className={styles.p_data}>1600</h3>
-                        </div>
-                    </div>
+        <div className={styles.newright}>
+            <div className={styles.head29}>Supply information</div>
+            <div className={styles.info2forbg}>
+            <div className={styles.info22}>
+                    <div className={styles.text12}>Price to USD</div>
+                    <div className={styles.ans}><b>₹ 16,648.72</b></div>
                 </div>
-                <div className={styles.right_side}>
-                    <h1 className={styles.head_right}>Supply information</h1>
-                    <div className={styles.l_box_data}>
-                        <div className={styles._img_data}>
-                            <img src="" alt="" />
-                            <h3 className={styles.name_p}></h3>
-                        </div>
-                        <div className={styles.right_p}>
-                            <h3 className={styles.p_data}></h3>
-                        </div>
-                    </div>
+                <div className={styles.info22}>
+                    <div className={styles.text12}>Price to USD</div>
+                    <div className={styles.ans}><b>₹ 16,648.72</b></div>
+                </div>
+                <div className={styles.info22}>
+                    <div className={styles.text12}>Price to USD</div>
+                    <div className={styles.ans}><b>₹ 16,648.72</b></div>
+                </div>
+                <div className={styles.info22}>
+                    <div className={styles.text12}>Price to USD</div>
+                    <div className={styles.ans}><b>₹ 16,648.72</b></div>
+                </div>
+                <div className={styles.info22}>
+                    <div className={styles.text12}>Price to USD</div>
+                    <div className={styles.ans}><b>₹ 16,648.72</b></div>
                 </div>
             </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
 
 
         </>

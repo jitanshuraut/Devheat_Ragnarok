@@ -3,19 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { collection, query, where, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
 import { db } from "../firebase"
 function Detail() {
-    const q = query(collection(db, "user"), where("email", "==", `${sessionStorage.getItem("email")}`));
-    const [file, setfile] = useState([])
-    const navigate = useNavigate();
-    useEffect(() => {
-        const getuser = async () => {
-            const data = await getDocs(q);
-            setfile(data.docs.map((doc) =>
-                ({ ...doc.data(), id: doc.id })
-            ))
-        }
-        getuser()
 
-    }, [])
+      const navigate = useNavigate();
+    // const q = query(collection(db, "user"), where("email", "==", `${sessionStorage.getItem("email")}`));
+    // const [file, setfile] = useState([])
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     const getuser = async () => {
+    //         const data = await getDocs(q);
+    //         setfile(data.docs.map((doc) =>
+    //             ({ ...doc.data(), id: doc.id })
+    //         ))
+    //     }
+    //     getuser()
+
+    // }, [])
 
     return (
         <>
@@ -43,13 +45,13 @@ function Detail() {
             <div className="first5">
                 <div className="pic">
                     <img src="profilepic.png" alt="" class="img30" />
-                    <div className="name5">{file[0].username}</div>
+                    <div className="name5">{sessionStorage.getItem("name")}</div>
                 </div>
                 <div className="right11">
                     <div className="as1">
                         <div className="as">
                             <p className="fhead">First Name</p>
-                            <div className="fname">{file[0].username}</div>
+                            <div className="fname">{sessionStorage.getItem("name")}</div>
                         </div>
                         <div className="as">
                             <p className="fhead">Last Name</p>
@@ -59,11 +61,11 @@ function Detail() {
                     <div className="as1">
                         <div className="as">
                             <p className="fhead">Email Address</p>
-                            <div className="fname">{file[0].email}</div>
+                            <div className="fname">{sessionStorage.getItem("email")}</div>
                         </div>
                         <div class="as">
                             <p className="fhead">Mobile no.</p>
-                            <div className="fname">+{file[0].contact}</div>
+                            <div className="fname">+{sessionStorage.getItem("contact")}</div>
                         </div>
                     </div>
                     <div class="as1">

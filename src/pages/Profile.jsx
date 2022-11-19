@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import {db} from "../firebase"
-import {collection,doc,getDocs,addDoc,updateDoc, deleteDoc,serverTimestamp,FieldValue} from "firebase/firestore"
+import { db } from "../firebase"
+import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, FieldValue } from "firebase/firestore"
 
 
 function Profile() {
@@ -10,13 +10,16 @@ function Profile() {
     const [bank, setbank] = useState("")
     const [bank_acc, setbank_acc] = useState("")
 
-    const ref=collection(db,"user");
-    const save= async()=>{
-    
-      await addDoc(ref,{username:`${sessionStorage.getItem("name")}`,password:"1234", fi_id:`${sessionStorage.getItem("name")}${number}`,contact:number,balance:"100",email:`${sessionStorage.getItem("email")}`})
-      navigate("/home__")
+    const ref = collection(db, "user");
+    const save = async () => {
+   
+        sessionStorage.setItem("balance", 100)
+        sessionStorage.setItem("fi_id", sessionStorage.getItem("email")+number)
+        sessionStorage.setItem("contact", number)
+        await addDoc(ref, { username: `${sessionStorage.getItem("name")}`, password: "1234", fi_id: `${sessionStorage.getItem("name")}${number}`, contact: number, balance: "100", email: `${sessionStorage.getItem("email")}` })
+        navigate("/home__")
     }
-  
+
     const onchange_2 = (event) => {
         setnumber(event.target.value);
     }
@@ -99,8 +102,8 @@ function Profile() {
                 }
                 else {
                     seter("")
-                   save()
-                    
+                    save()
+
                 }
 
 
